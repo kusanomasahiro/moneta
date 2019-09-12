@@ -21,7 +21,7 @@
     <v-card-actions>
       <v-spacer />
       <v-btn nuxt to="/signin" color="success">口座開設</v-btn>
-      <v-btn :disabled="!valid" @click.stop="login()" color="primary">ログイン</v-btn>
+      <v-btn :disabled="!valid" @click.stop="login" color="primary">ログイン</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -55,8 +55,15 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch("login/id", this.id);
-      this.$router.push("/");
+      this.accounts;
+      if (!this.account) {
+        alert('IDが間違っています')
+      } else if (this.hashedPassword !== this.account.password) {
+        alert('パスワードが間違っています')
+      } else {
+        this.$store.dispatch("login/id", this.id);
+        this.$router.push("/");
+      }
     },
   },
 };

@@ -1,3 +1,5 @@
+import { isCompletionStatement } from "@babel/types";
+
 // 振込処理用データストア
 
 export const state = () => ({
@@ -29,6 +31,12 @@ export const mutations = {
 };
 
 export const actions = {
+  init({ commit }) {
+    commit("bankId", null);
+    commit("branchId", null);
+    commit("accountId", null);
+    commit("amount", null);
+  },
   // 手数料支払い
   payFee({ dispatch, getters, rootGetters }, total) {
     const id = rootGetters["login/id"];

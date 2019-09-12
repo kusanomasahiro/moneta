@@ -54,6 +54,8 @@ export default {
       total += parseInt(this.amount);
       this.$store.dispatch("transfer/receiveTransfer", total);
       this.$store.dispatch("transfer/addStatementReceiveTransfer", total);
+      this.$store.dispatch("transfer/init", total);
+
     },
   },
 };
