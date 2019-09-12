@@ -12,10 +12,10 @@
           item-text="name"
           item-value="id"
           :items="accounts"
-          :rules="rules"
+          :rules="nameRules"
         />
-        <v-text-field v-model="user" label="ユーザーID"></v-text-field>
-        <v-text-field v-model="password" label="パスワード"></v-text-field>
+        <v-text-field v-model="user" label="ユーザーID" :rules="userRules"></v-text-field>
+        <v-text-field v-model="password" label="パスワード" :rules="passwordRules"></v-text-field>
       </v-form>
     </v-card-text>
     <v-card-actions>
@@ -37,9 +37,15 @@ export default {
     id: null,
     user: null,
     password: null,
-    rules: [
+    nameRules: [
       v => !!v || "必須項目です",
       // memo: 複数のルールを並べることができる。
+    ],
+    userRules: [
+      v => !!v || "必須項目です"
+    ],
+    passwordRules:[
+      v => !!v || "必須項目です"
     ],
   }),
   computed: {
